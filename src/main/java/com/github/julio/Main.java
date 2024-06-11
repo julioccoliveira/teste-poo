@@ -31,6 +31,9 @@ public class Main {
 
 		aumentoGlobal(10f, funcionarios);
 		
+		Map<String, List<Funcionario>> mapa = orderByFuncao(funcionarios);
+
+		System.out.println(mapa);
 	}
 
 	public static void removeFuncionario(String name, List<Funcionario> funcionarios) {
@@ -47,4 +50,18 @@ public class Main {
 		funcionarios.forEach(f -> f.aumentarSalarioPorcento(porcentual));
 	}
 	
+	public static Map<String, List<Funcionario>> orderByFuncao(List<Funcionario> funcionarios) {
+		Map<String, List<Funcionario>> mapa = new HashMap<>();
+
+		funcionarios.forEach(f -> {
+			if (mapa.containsKey(f.getFuncao())) {
+				List<Funcionario> listaProvisoria = mapa.get(f.getFuncao());
+				listaProvisoria.add(f);
+			} else {
+				mapa.put(f.getFuncao(), new ArrayList<>(List.of(f)));
+			}
+		});
+
+		return mapa;
+	}
 	}
