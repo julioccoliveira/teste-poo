@@ -41,6 +41,8 @@ public class Main {
 
 		orderByName(funcionarios);
 		System.out.println(funcionarios);
+
+		System.out.println(somarSalarios(funcionarios));
 	}
 
 	public static void removeFuncionario(String name, List<Funcionario> funcionarios) {
@@ -99,5 +101,16 @@ public class Main {
 
 	public static void orderByName(List<Funcionario> funcionarios) {
 		funcionarios.sort(Comparator.comparing(Pessoa::getNome));
+	}
+
+	public static String somarSalarios(List<Funcionario> funcionarios) {
+		NumberFormat pattern = NumberFormat.getNumberInstance(new Locale.Builder().setLanguage("pt").setRegion("BR").build());
+		pattern.setMinimumFractionDigits(2);
+		pattern.setMaximumFractionDigits(2);
+
+		return pattern.format(funcionarios
+					.stream()
+					.map(Funcionario::getSalario)
+					.reduce(BigDecimal.ZERO, BigDecimal::add));
 	}
 	}
