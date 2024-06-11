@@ -43,6 +43,9 @@ public class Main {
 		System.out.println(funcionarios);
 
 		System.out.println(somarSalarios(funcionarios));
+
+		System.out.println(contadorSalarios(funcionarios));
+
 	}
 
 	public static void removeFuncionario(String name, List<Funcionario> funcionarios) {
@@ -113,4 +116,20 @@ public class Main {
 					.map(Funcionario::getSalario)
 					.reduce(BigDecimal.ZERO, BigDecimal::add));
 	}
+
+	public static String contadorSalarios(List<Funcionario> funcionarios) {
+		final BigDecimal salarioMinQuestao = new BigDecimal(1212);
+		StringBuilder response = new StringBuilder();
+		response.append("[");
+		for (Funcionario f : funcionarios) {
+			response.append("{");
+			response.append("\"nome\": ").append("\"").append(f.getNome()).append("\", ");
+			response.append("\"salario\": ").append(f.getSalario().divide(salarioMinQuestao, 0, RoundingMode.FLOOR));
+			response.append("}, ");
+		}
+		response.delete(response.length() - 2, response.length());
+		response.append("]");
+
+		return response.toString();
 	}
+}
