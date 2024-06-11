@@ -38,6 +38,9 @@ public class Main {
 		System.out.println(getAniversarioByMes(funcionarios, 10, 12));
 
 		System.out.println(getMaisVelho(funcionarios));
+
+		orderByName(funcionarios);
+		System.out.println(funcionarios);
 	}
 
 	public static void removeFuncionario(String name, List<Funcionario> funcionarios) {
@@ -92,5 +95,9 @@ public class Main {
 		}
 
 		return "{\"nome\": \"" + funcionario.getNome() + "\"" + ", \"idade\": " + funcionario.getIdade() + "}";
+	}
+
+	public static void orderByName(List<Funcionario> funcionarios) {
+		funcionarios.sort(Comparator.comparing(Pessoa::getNome));
 	}
 	}
