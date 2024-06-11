@@ -36,6 +36,8 @@ public class Main {
 		System.out.println(mapa);
 
 		System.out.println(getAniversarioByMes(funcionarios, 10, 12));
+
+		System.out.println(getMaisVelho(funcionarios));
 	}
 
 	public static void removeFuncionario(String name, List<Funcionario> funcionarios) {
@@ -75,5 +77,20 @@ public class Main {
 		}
 
 		return response;
+	}
+
+	public static String getMaisVelho(List<Funcionario> funcionarios) {
+		Funcionario funcionario = null;
+
+		if (funcionarios == null || funcionarios.isEmpty()) {
+			return "404 - Lista de Funcionários not found.";
+		}
+		for (Funcionario f: funcionarios) {
+			if (funcionario == null || f.getDataNascimento().isBefore(funcionario.getDataNascimento())) {
+				funcionario = f;
+			}
+		}
+
+		return "{\"nome\": \"" + funcionario.getNome() + "\"" + ", \"idade\": " + funcionario.getIdade() + "}";
 	}
 	}
