@@ -29,7 +29,10 @@ public class Main {
 
 		System.out.println(funcionarios);
 
+		aumentoGlobal(10f, funcionarios);
+		
 	}
+
 	public static void removeFuncionario(String name, List<Funcionario> funcionarios) {
 		Funcionario toRemove = new Funcionario();
 		for (Funcionario f : funcionarios) {
@@ -39,4 +42,9 @@ public class Main {
 		}
 		funcionarios.remove(toRemove);
 	}
+
+	public static void aumentoGlobal(float porcentual, List<Funcionario> funcionarios) {
+		funcionarios.forEach(f -> f.aumentarSalarioPorcento(porcentual));
+	}
+	
 	}
