@@ -34,6 +34,8 @@ public class Main {
 		Map<String, List<Funcionario>> mapa = orderByFuncao(funcionarios);
 
 		System.out.println(mapa);
+
+		System.out.println(getAniversarioByMes(funcionarios, 10, 12));
 	}
 
 	public static void removeFuncionario(String name, List<Funcionario> funcionarios) {
@@ -63,5 +65,15 @@ public class Main {
 		});
 
 		return mapa;
+	}
+
+	public static List<Funcionario> getAniversarioByMes(List<Funcionario> funcionarios, int... meses) {
+		List<Funcionario> response = new ArrayList<>();
+
+		for (int mes : meses) {
+			response.addAll(funcionarios.stream().filter(f -> f.getDataNascimento().getMonthValue() == mes).toList());
+		}
+
+		return response;
 	}
 	}
