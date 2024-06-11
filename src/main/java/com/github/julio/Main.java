@@ -24,4 +24,19 @@ public class Main {
 				new Funcionario("Heloísa", LocalDate.of(2003, 5, 24), BigDecimal.valueOf(1606.85), "Eletricista"),
 				new Funcionario("Helena", LocalDate.of(1996, 9, 2), BigDecimal.valueOf(2799.93), "Gerente")
 		));
+
+		removeFuncionario("João", funcionarios);
+
+		System.out.println(funcionarios);
+
+	}
+	public static void removeFuncionario(String name, List<Funcionario> funcionarios) {
+		Funcionario toRemove = new Funcionario();
+		for (Funcionario f : funcionarios) {
+			if (f.getNome().equals(name)) {
+				toRemove = f;
+			}
+		}
+		funcionarios.remove(toRemove);
+	}
 	}
